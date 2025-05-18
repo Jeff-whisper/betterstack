@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
 import logging
-from logtail.handler import LogtailHandler
+from logtail import LogtailHandler
+
 
 app = Flask(__name__)
 
 # Configure Logtail handler
-logtail_handler = LogtailHandler(source_token="qZn7dMCn3jThEW6SJWEs3YK6")
-app.logger.addHandler(logtail_handler)
+handler = LogtailHandler(
+    source_token='qZn7dMCn3jThEW6SJWEs3YK6', 
+    host='https://eu-nbg-2-vec.betterstackdata.com',
+)
+app.logger.addHandler(handler)
 app.logger.setLevel(logging.INFO)
 
 # In-memory data store
