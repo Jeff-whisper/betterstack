@@ -5,7 +5,7 @@ from logtail.handler import LogtailHandler
 app = Flask(__name__)
 
 # Configure Logtail handler
-logtail_handler = LogtailHandler(source_token="your-logtail-source-token")
+logtail_handler = LogtailHandler(source_token="qZn7dMCn3jThEW6SJWEs3YK6")
 app.logger.addHandler(logtail_handler)
 app.logger.setLevel(logging.INFO)
 
