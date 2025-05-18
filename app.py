@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import logging
-from logtail import LogtailHandler
+from logtail.handler import LogtailHandler
 
 app = Flask(__name__)
 
