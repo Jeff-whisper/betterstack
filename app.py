@@ -5,7 +5,7 @@ from logtail import LogtailHandler
 app = Flask(__name__)
 
 # Configure Logtail handler
-logtail_handler = LogtailHandler(source_token="qZn7dMCn3jThEW6SJWEs3YK6")
+logtail_handler = LogtailHandler(source_token="your-logtail-source-token")
 app.logger.addHandler(logtail_handler)
 app.logger.setLevel(logging.INFO)
 
@@ -55,4 +55,12 @@ def update_task(task_id):
     task["title"] = data.get("title", task["title"])
     task["done"] = data.get("done", task["done"])
     app.logger.info("Task updated", extra={"task": task})
-    return jsonify(tas
+    return jsonify(task)
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    app.logger.exception("An error occurred")
+    return {"error": "Internal server error"}, 500
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
